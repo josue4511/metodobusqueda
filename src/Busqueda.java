@@ -1,16 +1,17 @@
 public class Busqueda {
 
-    public int buscarNumero(int[] arreglo, int numero) {
-        for (int i = 0; i < arreglo.length; i++) {
-            if (arreglo[i] == numero) {
-                return i;
+  
+    public persona buscar(persona[] personas, String nombre) {
+        for (persona p : personas) {
+            if (p.getNombre().equalsIgnoreCase(nombre)) {
+                return p;
             }
         }
-        return -1;
+        return null;
     }
 
     
-    public persona buscarPersonaEdadImparMayor25(persona[] personas) {
+    public persona buscar(persona[] personas) {
         for (persona p : personas) {
             if (p.getEdad() > 25 && p.getEdad() % 2 != 0) {
                 return p;
@@ -19,13 +20,23 @@ public class Busqueda {
         return null;
     }
 
-  
-    public persona findpersonByValueName(persona[] personas, String nombre) {
+    
+    public persona buscar(persona[] personas, int valorNombre) {
         for (persona p : personas) {
-            if (p.getNombre().equalsIgnoreCase(nombre)) {
+            int valor = calcularValorNombre(p.getNombre());
+            if (valor == valorNombre) {
                 return p;
             }
         }
         return null;
+    }
+
+   
+    private int calcularValorNombre(String nombre) {
+        int suma = 0;
+        for (int i = 0; i < nombre.length(); i++) {
+            suma += (int) nombre.charAt(i);
+        }
+        return suma;
     }
 }
